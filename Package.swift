@@ -6,16 +6,12 @@ import CompilerPluginSupport
 
 let package = Package(
     name: "CustomType",
-    platforms: [.macOS(.v10_15), .iOS(.v13), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v13)],
+    platforms: [.macOS(.v12), .iOS(.v15), .tvOS(.v13), .watchOS(.v6), .macCatalyst(.v15)],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "CustomType",
             targets: ["CustomType"]
-        ),
-        .executable(
-            name: "CustomTypeClient",
-            targets: ["CustomTypeClient"]
         ),
     ],
     dependencies: [
@@ -35,9 +31,6 @@ let package = Package(
 
         // Library that exposes a macro as part of its API, which is used in client programs.
         .target(name: "CustomType", dependencies: ["CustomTypeMacros"]),
-
-        // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "CustomTypeClient", dependencies: ["CustomType"]),
 
         // A test target used to develop the macro implementation.
         .testTarget(
